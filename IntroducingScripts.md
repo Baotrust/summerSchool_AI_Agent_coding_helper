@@ -102,12 +102,57 @@ while True:
 
 ---
 
-## 🤪 Next Steps
+## 🧹 Improving Code Consistency with Python Bindings
 
-After this script is running:
-
-- ✅ You know your model and binary are functional
-- ✅ You are ready to evolve the agent into a **code-aware assistant**
-- ✅ You’ll soon integrate code parsing and editing features
-
-> In the next module, you’ll add logic to analyze `.py` files or full code folders.
+> **Why Switch from Subprocess to `llama-cpp-python`?**
+>
+> The initial setup using `subprocess` and `llama-cli` was useful to quickly validate model inference, but it introduces several drawbacks:
+>
+> - ❌ **Inconsistent behavior**: Repeated prompts or hallucinated responses can happen because of improper prompt framing and loss of session context.
+> - ❌ **Limited control**: It's harder to set system prompts, manage conversation context, or handle advanced features like token streaming.
+> - ❌ **Less efficient**: Spawning a subprocess for each interaction increases latency.
+>
+> ✅ **Switching to `llama-cpp-python` solves these issues** by allowing direct interaction with the model in Python:
+>
+> - 🟢 **Session-level control**: Keep context alive inside Python with configurable context length.
+> - 🟢 **Cleaner outputs**: Less formatting noise, no prompt echo by default.
+> - 🟢 **Streamlined codebase**: More maintainable code with less shell interaction overhead.
+> - 🟢 **Better educational value**: Students can directly explore AI inference logic in Python.
+>
+> ✅ **How to Install for All OS (Windows/macOS/Linux):**
+>
+> Depending on your setup:
+>
+> - **With virtual environment**:
+>
+> ```bash
+> python3 -m venv venv
+> source venv/bin/activate  # On Windows: venv\Scripts\activate
+> pip install llama-cpp-python
+> ```
+>
+> - **Or globally if you prefer**:
+>
+> ```bash
+> pip install --user llama-cpp-python
+> ```
+>
+> ✅ **Example Code Structure**:
+>
+> ```python
+> from llama_cpp import Llama
+>
+> MODEL_PATH = "models/mistral-7b-instruct-v0.1.Q6_K.gguf"
+> llama = Llama(model_path=MODEL_PATH, n_ctx=4096)
+>
+> while True:
+>     user_input = input("🧑‍💻 You: ").strip()
+>     if user_input.lower() in ["exit", "quit"]:
+>         break
+>     response = llama(user_input, max_tokens=300)
+>     print("🤖 AI:", response["choices"][0]["text"].strip())
+> ```
+>
+> ✅ **Summary**:
+>
+> Switching to `llama-cpp-python` ensures better reproducibility, easier debugging, and a smoother learning experience during the workshop.
