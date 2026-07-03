@@ -26,7 +26,7 @@ It’s designed to give participants a practical understanding of:
 ### 2. 🔍 Choosing the Right LLM for the Job
 
 - Evaluating models for **local execution**
-- RAM, CPU/GPU requirements, quantization (Q4_K, Q6_K, Q8_0…)
+- RAM, CPU/GPU requirements, quantization (Q4_K_M, Q5_K_M, Q6_K, Q8_K_M…)
 - ✅ Focused on **offline local models**
 - 🕘️ **(Optional Mention)**: API-based augmentation (Claude, GPT-4) as an advanced topic
 

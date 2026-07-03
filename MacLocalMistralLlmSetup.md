@@ -36,11 +36,11 @@ cmake --build . --config Release
 
 1. Open your browser and go to:
 
-   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
+   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF)
 
 2. Download the model file:
 
-   - Recommended version: `mistral-7b-instruct-v0.1.Q6_K.gguf`
+   - Recommended version: `mistral-7b-instruct-v0.3.Q6_K.gguf`
 
 3. In your terminal, go to the root of your `llama.cpp` project directory:
 
@@ -59,7 +59,7 @@ mkdir -p models
 5. Move the downloaded file to the correct location:
 
 ```bash
-mv ~/Downloads/mistral-7b-instruct-v0.1.Q6_K.gguf models/
+mv ~/Downloads/mistral-7b-instruct-v0.3.Q6_K.gguf models/
 ```
 
 📅 Final directory structure should look like:
@@ -69,7 +69,7 @@ llama.cpp/
 ├── build/
 │   └── ...
 ├── models/
-    └── mistral-7b-instruct-v0.1.Q6_K.gguf
+    └── mistral-7b-instruct-v0.3.Q6_K.gguf
 ```
 
 ---
@@ -77,7 +77,7 @@ llama.cpp/
 You can now test your setup by running (from the project root):
 
 ```bash
-./build/bin/llama-cli -m models/mistral-7b-instruct-v0.1.Q6_K.gguf -p "Say hello." -n 50
+./build/bin/llama-cli -m models/mistral-7b-instruct-v0.3.Q6_K.gguf -p "Say hello." -n 50
 ```
 
 ---
@@ -88,7 +88,7 @@ Use the `llama-cli` to generate a simple response:
 
 ```bash
 ./build/bin/llama-cli \
-  -m models/mistral-7b-instruct-v0.1.Q6_K.gguf \
+  -m models/mistral-7b-instruct-v0.3.Q6_K.gguf \
   -p "Write a short story about a mysterious cabin in the woods." \
   -n 300
 ```
@@ -121,7 +121,7 @@ Make sure to adjust the paths to your model and binary accordingly.
 
 - ✅ Tested on **MacBook Pro M3 Max, 48 GB unified memory**
 - ✅ Works best with **Metal GPU offloading**
-- Minimum: 8–16 GB RAM (Q4_0 or Q6_K models)
+- Minimum: 8–16 GB RAM (Q4_K_M or Q6_K models)
 
 ---
 

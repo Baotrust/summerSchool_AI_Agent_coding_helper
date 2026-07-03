@@ -16,7 +16,7 @@ Run this command in your terminal or command prompt:
 python --version
 ```
 
-You must have **Python 3.8 or higher**. If not, [download it here](https://www.python.org/downloads/).
+You must have **Python 3.10 or higher**. If not, [download it here](https://www.python.org/downloads/).
 
 > 🧠 Tip: On some systems, `python3 --version` may be required.
 
@@ -26,15 +26,15 @@ Ensure your system includes the following:
 
 | Tool        | Usage                         | How to Install                                                         |
 | ----------- | ----------------------------- | ---------------------------------------------------------------------- |
-| Python 3.8+ | Runs the local agent script   | [https://www.python.org/downloads/](https://www.python.org/downloads/) |
+| Python 3.10+ | Runs the local agent script   | [https://www.python.org/downloads/](https://www.python.org/downloads/) |
 | Terminal    | Executes CLI commands         | Default on macOS/Linux, use CMD/PowerShell on Windows                  |
 | llama-cli   | LLM binary (from `llama.cpp`) | See setup tutorial for your OS                                         |
-| GGUF model  | The model used by the AI      | See setup tutorial (e.g., `Q6_K`)                                      |
+| GGUF model  | The model used by the AI      | See setup tutorial (e.g., `Q5_K_M` or `Q6_K`)                          |
 
 Check the model file and binary manually:
 
 ```bash
-ls models/       # Should include: mistral-7b-instruct-v0.1.Q6_K.gguf
+ls models/       # Should include: mistral-7b-instruct-v0.3.Q6_K.gguf
 ls build/bin/    # Should include: llama-cli or llama-cli.exe
 ```
 
@@ -52,7 +52,7 @@ import subprocess
 import os
 
 # === STUDENTS: MODIFY THESE PATHS FOR YOUR SYSTEM ===
-MODEL_PATH = "models/mistral-7b-instruct-v0.1.Q6_K.gguf"       # <-- Update if different
+MODEL_PATH = "models/mistral-7b-instruct-v0.3.Q6_K.gguf"       # <-- Update if different
 LLAMA_CLI = "build/bin/llama-cli"                              # <-- Use .exe on Windows if needed
 MAX_TOKENS = 800
 
@@ -142,7 +142,7 @@ while True:
 > ```python
 > from llama_cpp import Llama
 >
-> MODEL_PATH = "models/mistral-7b-instruct-v0.1.Q6_K.gguf"
+> MODEL_PATH = "models/mistral-7b-instruct-v0.3.Q6_K.gguf"
 > llama = Llama(model_path=MODEL_PATH, n_ctx=4096)
 >
 > while True:

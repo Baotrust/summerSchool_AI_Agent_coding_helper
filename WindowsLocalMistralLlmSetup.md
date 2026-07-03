@@ -44,11 +44,11 @@ cmake --build . --config Release
 
 1. Open your browser and go to:
 
-   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
+   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF)
 
 2. Download the model file:
 
-   - Recommended version: `mistral-7b-instruct-v0.1.Q6_K.gguf`
+   - Recommended version: `mistral-7b-instruct-v0.3.Q6_K.gguf`
 
 3. In your terminal, navigate to the `llama.cpp` root directory:
 
@@ -65,7 +65,7 @@ mkdir models
 5. Move the model file to `models/`:
 
 ```powershell
-move "C:\Users\<YourUser>\Downloads\mistral-7b-instruct-v0.1.Q6_K.gguf" models\
+move "C:\Users\<YourUser>\Downloads\mistral-7b-instruct-v0.3.Q6_K.gguf" models\
 ```
 
 📁 Final directory structure should look like:
@@ -76,7 +76,7 @@ llama.cpp\
 │   └── bin\
 │       └── llama-cli.exe
 ├── models\
-    └── mistral-7b-instruct-v0.1.Q6_K.gguf
+    └── mistral-7b-instruct-v0.3.Q6_K.gguf
 ```
 
 ---
@@ -87,7 +87,7 @@ Test your setup with:
 
 ```powershell
 ./build/bin/llama-cli.exe ^
-  -m models/mistral-7b-instruct-v0.1.Q6_K.gguf ^
+  -m models/mistral-7b-instruct-v0.3.Q6_K.gguf ^
   -p "Write a short story about a mysterious cabin in the woods." ^
   -n 300
 ```
@@ -120,7 +120,7 @@ Ensure the paths to the model and executable match your environment.
 
 - ✅ Works on Windows 10/11 (64-bit)
 - ✅ Recommended: 16+ GB RAM
-- Minimum: 8 GB RAM (Q4 or Q6 quantized models)
+- Minimum: 8 GB RAM (Q4_K_M or Q6 quantized models)
 
 ---
 

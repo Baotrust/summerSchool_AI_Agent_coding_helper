@@ -55,18 +55,18 @@ cmake --build . --config Release
 
 1. Open your browser and visit:
 
-   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF)
+   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF)
 
 2. Download a file like:
 
-   `mistral-7b-instruct-v0.1.Q6_K.gguf`
+   `mistral-7b-instruct-v0.3.Q6_K.gguf`
 
 3. Return to your project root and move the file:
 
 ```bash
 cd ~/path/to/llama.cpp  # adjust as needed
 mkdir -p models
-mv ~/Downloads/mistral-7b-instruct-v0.1.Q6_K.gguf models/
+mv ~/Downloads/mistral-7b-instruct-v0.3.Q6_K.gguf models/
 ```
 
 ---
@@ -75,7 +75,7 @@ mv ~/Downloads/mistral-7b-instruct-v0.1.Q6_K.gguf models/
 
 ```bash
 ./build/bin/llama-cli \
-  -m models/mistral-7b-instruct-v0.1.Q6_K.gguf \
+  -m models/mistral-7b-instruct-v0.3.Q6_K.gguf \
   -p "Write a short poem about the ocean." \
   -n 300
 ```
@@ -94,7 +94,7 @@ For an interactive session, create a Python script using `subprocess` to call th
 
 - Tested on Ubuntu 22.04 LTS
 - ARM or x86 architectures supported
-- Performance depends on quantization level (Q4/Q5/Q6/Q8)
+- Performance depends on quantization level (Q4_K_M/Q5_K_M/Q6_K/Q8_K_M)
 
 ---
 

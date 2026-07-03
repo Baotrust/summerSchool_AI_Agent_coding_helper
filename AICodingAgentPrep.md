@@ -9,7 +9,7 @@ This document continues the setup for your **local AI agent** based on Mistral a
 Make sure you've completed:
 
 - ✅ Installed `llama.cpp` and compiled the CLI binary
-- ✅ Downloaded a suitable Mistral model (e.g. `Q4_K` or `Q8_K`)
+- ✅ Downloaded a suitable Mistral model (e.g. `Q4_K_M`, `Q5_K_M`, or `Q6_K`)
 - ✅ Successfully tested `local_agent.py` for prompt-based conversation
 
 If not, refer back to the platform-specific setup files (macOS, Windows, Linux).

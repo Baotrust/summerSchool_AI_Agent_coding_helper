@@ -8,7 +8,7 @@ import sqlite3
 import sys
 
 # === STUDENTS: MODIFY THESE PATHS FOR YOUR SYSTEM ===
-MODEL_PATH = "models/mistral-7b-instruct-v0.1.Q8_0.gguf"  # Update as needed
+MODEL_PATH = "models/mistral-7b-instruct-v0.3.Q8_K_M.gguf"  # Update as needed
 MAX_TOKENS = 800
 BASE_DEV_PATH = os.path.expanduser("~/development/")  # macOS/Linux example
 
