@@ -26,6 +26,10 @@ Use this tutorial before the workshop:
 
 - [Before Course Prep - Local Models](./00-BeforeCoursePrep-Models.md)
 
+Then install the local inference engine:
+
+- [Install llama.cpp](./InstallLlamaCpp.md)
+
 Then use this one during the first workshop setup step:
 
 - [Day 01 - Download the Local Models](./Day01ModelDownloadSetup.md)

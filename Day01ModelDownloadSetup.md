@@ -176,6 +176,8 @@ Add or replace model files  -> ~/development/AI-models
 
 ## Test llama.cpp
 
+If `llama.cpp` is not installed yet, complete [Install llama.cpp](./InstallLlamaCpp.md) first.
+
 macOS and Linux:
 
 ```bash

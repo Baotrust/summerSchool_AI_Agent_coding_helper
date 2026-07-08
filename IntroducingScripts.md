@@ -8,6 +8,7 @@ This note explains the two workshop scripts that now matter:
 | `local_agent.py` | Runs the project-aware coding assistant |
 
 The shared model layout is documented in [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md).
+The `llama.cpp` engine install is documented in [InstallLlamaCpp.md](./InstallLlamaCpp.md).
 
 ## Verify the Environment
 
