@@ -2,6 +2,8 @@
 
 This document continues the setup for your **local AI agent** based on Mistral and `llama.cpp`, preparing it to serve as a **code-aware development assistant**.
 
+The current course baseline uses the shared model folder from [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md), `run_local_mistral.sh`, and `local_agent.py`.
+
 ---
 
 ## ✅ Prerequisites Recap
@@ -23,19 +25,19 @@ To help the AI agent work on your code:
 1. Create a base folder where you store your code projects, e.g.:
 
    ```bash
-   mkdir -p ~/dev
+   mkdir -p ~/development
    ```
 
 2. Move your sample projects into that folder:
 
    ```bash
-   mv ~/Downloads/my-python-project ~/dev/
+   mv ~/Downloads/my-python-project ~/development/
    ```
 
 3. Adjust the Python script to define this base path:
 
    ```python
-   BASE_DEV_PATH = os.path.expanduser("~/dev")
+   BASE_DEV_PATH = os.path.expanduser("~/development")
    ```
 
    > ⚠️ Students must **edit this path** to fit their system.

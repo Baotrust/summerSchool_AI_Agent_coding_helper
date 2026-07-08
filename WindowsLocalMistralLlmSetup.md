@@ -1,14 +1,14 @@
 # 🪟 Local Mistral LLM Setup Guide for Windows
 
-This guide walks you through setting up and running a local **Mistral 7B Instruct** model using `llama.cpp` on **Windows**. Ideal for developers, students, and workshops involving local AI agents.
+This page is a legacy OS note. The authoritative before-course model prep is in [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md) and the course runtime script is [run_local_mistral.sh](./run_local_mistral.sh).
 
 ---
 
-## 🚀 1. Clone llama.cpp
+## 🚀 1. Clone the Stable Repo
 
 ```powershell
-git clone https://github.com/ggerganov/llama.cpp
-cd llama.cpp
+git clone https://github.com/ggml-org/llama.cpp llama.cpp-stable
+cd llama.cpp-stable
 ```
 
 ---
@@ -40,44 +40,17 @@ cmake --build . --config Release
 
 ---
 
-## 📦 3. Download the Model (Mistral 7B Instruct)
+## 📦 3. Model Location
 
-1. Open your browser and go to:
+The course model now lives outside the engine repo:
 
-   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF)
-
-2. Download the model file:
-
-   - Recommended version: `mistral-7b-instruct-v0.3.Q6_K.gguf`
-
-3. In your terminal, navigate to the `llama.cpp` root directory:
-
-```powershell
-cd path\to\llama.cpp
+```text
+%USERPROFILE%\development\AI-models\llm\Mistral-7B-Instruct-v0.3-Q6_K.gguf
 ```
 
-4. Create the `models` folder if not already present:
+If your machine is tight on memory, use `Mistral-7B-Instruct-v0.3-Q4_K_M.gguf` instead.
 
-```powershell
-mkdir models
-```
-
-5. Move the model file to `models/`:
-
-```powershell
-move "C:\Users\<YourUser>\Downloads\mistral-7b-instruct-v0.3.Q6_K.gguf" models\
-```
-
-📁 Final directory structure should look like:
-
-```
-llama.cpp\
-├── build\
-│   └── bin\
-│       └── llama-cli.exe
-├── models\
-    └── mistral-7b-instruct-v0.3.Q6_K.gguf
-```
+The download link is documented in [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md).
 
 ---
 
@@ -86,55 +59,11 @@ llama.cpp\
 Test your setup with:
 
 ```powershell
-./build/bin/llama-cli.exe ^
-  -m models/mistral-7b-instruct-v0.3.Q6_K.gguf ^
+.\build\bin\llama-cli.exe ^
+  -m "$env:USERPROFILE\development\AI-models\llm\Mistral-7B-Instruct-v0.3-Q6_K.gguf" ^
   -p "Write a short story about a mysterious cabin in the woods." ^
-  -n 300
+  -n 300 ^
+  --single-turn
 ```
 
-✅ You should see a story printed in your terminal.
-
 ---
-
-## 🧰 5. Interactive Python CLI Script
-
-Use this script to run an AI agent with memory and conversation control:
-
-```python
-# File: scripts/converse-local.py
-# Launches a local assistant via llama-cli.exe
-```
-
-Features:
-
-- Accepts user prompts
-- Tracks conversation history
-- Supports `restart`, `clear`, and `exit`
-- Executes via `subprocess`
-
-Ensure the paths to the model and executable match your environment.
-
----
-
-## 💡 Hardware Notes
-
-- ✅ Works on Windows 10/11 (64-bit)
-- ✅ Recommended: 16+ GB RAM
-- Minimum: 8 GB RAM (Q4_K_M or Q6 quantized models)
-
----
-
-## ✅ Summary
-
-You're now ready to:
-
-- Run Mistral 7B fully offline
-- Use it for local assistants, code review, and documentation agents
-- Extend into more advanced projects using Python or CLI
-
----
-
-For issues, bring your setup to the workshop lab session or refer to:
-
-- GitHub Issues: [https://github.com/ggerganov/llama.cpp/issues](https://github.com/ggerganov/llama.cpp/issues)
-- Windows CLI guide: [https://steelph0enix.github.io/posts/llama-cpp-guide](https://steelph0enix.github.io/posts/llama-cpp-guide)

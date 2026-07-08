@@ -14,6 +14,31 @@ It’s designed to give participants a practical understanding of:
 
 ---
 
+## Start Here: Before Course Prep
+
+Before installing or running the tools, prepare the shared model folder:
+
+```text
+~/development/AI-models
+```
+
+Use this tutorial before the workshop:
+
+- [Before Course Prep - Local Models](./00-BeforeCoursePrep-Models.md)
+
+Then use this one during the first workshop setup step:
+
+- [Day 01 - Download the Local Models](./Day01ModelDownloadSetup.md)
+
+This folder is shared by both local stacks:
+
+- `AI-models/llm/` for `llama.cpp`
+- `AI-models/comfyui/` for ComfyUI
+
+The goal is to avoid scattering large model files across app repos. The engines can be updated independently while the course model files stay in one predictable place.
+
+---
+
 ## 🕘️ Morning — Foundations & Framing
 
 ### 1. 🧡 Introduction to AI Agents & Mistral
@@ -121,4 +146,3 @@ Students will:
 ## 💡 Why Local?
 
 > Because private code should stay private — and **offline agents** let you benefit from AI without leaking your IP, exposing user data, or relying on external APIs.
-

@@ -1,6 +1,6 @@
 # 🐧 Local LLM Setup Guide for Linux (Ubuntu/Debian)
 
-This guide walks you through setting up and running a local Mistral 7B LLM using `llama.cpp` on a Linux system like Ubuntu. This is suitable for students, developers, or anyone interested in using an offline LLM.
+This page is a legacy OS note. The authoritative before-course model prep is in [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md) and the course runtime script is [run_local_mistral.sh](./run_local_mistral.sh).
 
 ---
 
@@ -15,14 +15,14 @@ This guide walks you through setting up and running a local Mistral 7B LLM using
 
 ---
 
-## 🚀 1. Clone llama.cpp
+## 🚀 1. Clone the Stable Repo
 
 ```bash
 sudo apt update && sudo apt install -y git
 
 # Clone the repo
-git clone https://github.com/ggerganov/llama.cpp
-cd llama.cpp
+git clone https://github.com/ggml-org/llama.cpp llama.cpp-stable
+cd llama.cpp-stable
 ```
 
 ---
@@ -51,23 +51,17 @@ cmake --build . --config Release
 
 ---
 
-## 📦 3. Download the Model (Mistral 7B Instruct)
+## 📦 3. Model Location
 
-1. Open your browser and visit:
-
-   👉 [https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.3-GGUF)
-
-2. Download a file like:
-
-   `mistral-7b-instruct-v0.3.Q6_K.gguf`
-
-3. Return to your project root and move the file:
+The course model now lives outside the engine repo:
 
 ```bash
-cd ~/path/to/llama.cpp  # adjust as needed
-mkdir -p models
-mv ~/Downloads/mistral-7b-instruct-v0.3.Q6_K.gguf models/
+~/development/AI-models/llm/Mistral-7B-Instruct-v0.3-Q6_K.gguf
 ```
+
+If your machine is small, use `Mistral-7B-Instruct-v0.3-Q4_K_M.gguf` instead.
+
+The download link is documented in [00-BeforeCoursePrep-Models.md](./00-BeforeCoursePrep-Models.md).
 
 ---
 
@@ -75,37 +69,8 @@ mv ~/Downloads/mistral-7b-instruct-v0.3.Q6_K.gguf models/
 
 ```bash
 ./build/bin/llama-cli \
-  -m models/mistral-7b-instruct-v0.3.Q6_K.gguf \
+  -m ~/development/AI-models/llm/Mistral-7B-Instruct-v0.3-Q6_K.gguf \
   -p "Write a short poem about the ocean." \
-  -n 300
+  -n 300 \
+  --single-turn
 ```
-
-✅ The terminal will output a response inline.
-
----
-
-## 🧰 5. Optional Python Wrapper
-
-For an interactive session, create a Python script using `subprocess` to call the model.
-
----
-
-## 💡 Notes
-
-- Tested on Ubuntu 22.04 LTS
-- ARM or x86 architectures supported
-- Performance depends on quantization level (Q4_K_M/Q5_K_M/Q6_K/Q8_K_M)
-
----
-
-## ✅ Summary
-
-You are now ready to:
-
-- Run local prompts with `llama-cli`
-- Extend your setup for Python agents or CLI tools
-- Prepare for integration in local code workflows
-
----
-
-For advanced usage (agents, Docker, VS Code integration), see accompanying tutorials.

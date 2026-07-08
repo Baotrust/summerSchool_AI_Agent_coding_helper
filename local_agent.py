@@ -1,18 +1,44 @@
 
-# File: local_agent.py
-# Purpose: Local AI Coding Assistant with Project Selection, SQLite Memory, and Project Summary (following tutorial steps)
-
-from llama_cpp import Llama
 import os
 import sqlite3
+import subprocess
 import sys
 
 # === STUDENTS: MODIFY THESE PATHS FOR YOUR SYSTEM ===
-MODEL_PATH = "models/mistral-7b-instruct-v0.3.Q8_K_M.gguf"  # Update as needed
+DEVELOPMENT_DIR = os.environ.get("DEVELOPMENT_DIR", os.path.expanduser("~/development"))
+LLAMA_COMPLETION = os.environ.get(
+    "LLAMA_COMPLETION",
+    os.path.join(DEVELOPMENT_DIR, "llama.cpp-stable", "build", "bin", "llama-completion"),
+)
+MODEL_PATH = os.environ.get(
+    "MODEL_PATH",
+    os.path.join(DEVELOPMENT_DIR, "AI-models", "llm", "Mistral-7B-Instruct-v0.3-Q6_K.gguf"),
+)
 MAX_TOKENS = 800
-BASE_DEV_PATH = os.path.expanduser("~/development/")  # macOS/Linux example
+BASE_DEV_PATH = DEVELOPMENT_DIR
 
-llm = Llama(model_path=MODEL_PATH, n_ctx=4096)
+
+def run_llm(prompt, max_tokens=MAX_TOKENS):
+    if not os.path.exists(LLAMA_COMPLETION):
+        print(f"❌ llama-completion not found: {LLAMA_COMPLETION}")
+        sys.exit(1)
+    if not os.path.exists(MODEL_PATH):
+        print(f"❌ Model not found: {MODEL_PATH}")
+        sys.exit(1)
+
+    cmd = [
+        LLAMA_COMPLETION,
+        "-m", MODEL_PATH,
+        "-p", f"[INST] {prompt} [/INST]",
+        "-n", str(max_tokens),
+        "--no-display-prompt",
+        "-no-cnv",
+        "--device", "none",
+        "-ngl", "0",
+        "--no-op-offload",
+    ]
+    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    return result.stdout.strip()
 
 # === PROJECT SELECTION ===
 def select_project(base_path):
@@ -105,8 +131,7 @@ silent_prompt = (
     "Provide a short summary of what this project seems to be about, mentioning the main technologies if visible.\n"
     "<|user|>\nSummarize this project.\n<|assistant|>\n"
 )
-silent_response = llm(silent_prompt, max_tokens=300)
-project_summary = silent_response["choices"][0]["text"].strip()
+project_summary = run_llm(silent_prompt, max_tokens=300)
 
 print("\n🤖 Project Summary:\n", project_summary)
 
@@ -144,8 +169,7 @@ while True:
 
     recent_history = get_recent_history(PROJECT_ID)
     prompt = build_prompt(project_name, project_summary, recent_history, user_input)
-    response = llm(prompt, max_tokens=MAX_TOKENS)
-    answer = response["choices"][0]["text"].strip()
+    answer = run_llm(prompt, max_tokens=MAX_TOKENS)
     print("🤖 AI:", answer)
 
     conn = get_db()
