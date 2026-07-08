@@ -172,13 +172,41 @@ Invoke-WebRequest `
 
 Download the course-approved Pony SDXL checkpoint and place it exactly here:
 
+Model page:
+
+```text
+https://civitai.com/models/257749?modelVersionId=290640
+```
+
+Direct download link:
+
+```text
+https://civitai.com/api/download/models/290640
+```
+
 macOS and Linux:
+
+```bash
+curl -L --fail --continue-at - \
+  --output ~/development/AI-models/comfyui/checkpoints/ponyDiffusionV6XL_v6StartWithThisOne.safetensors \
+  https://civitai.com/api/download/models/290640
+```
+
+Expected location:
 
 ```text
 ~/development/AI-models/comfyui/checkpoints/ponyDiffusionV6XL_v6StartWithThisOne.safetensors
 ```
 
-Windows:
+Windows PowerShell:
+
+```powershell
+Invoke-WebRequest `
+  -Uri "https://civitai.com/api/download/models/290640" `
+  -OutFile "$env:USERPROFILE\development\AI-models\comfyui\checkpoints\ponyDiffusionV6XL_v6StartWithThisOne.safetensors"
+```
+
+Expected location:
 
 ```text
 %USERPROFILE%\development\AI-models\comfyui\checkpoints\ponyDiffusionV6XL_v6StartWithThisOne.safetensors
